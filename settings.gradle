@@ -1,0 +1,3 @@
+rootProject.name='DateTimePreference Sample'
+include ':app'
+include ':dtpreference'

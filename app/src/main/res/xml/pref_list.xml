@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.pcchin.dtpreference.TimePreference
+        android:title="Time preference"
+        android:key="pref_time" />
+    <com.pcchin.dtpreference.DatePreference
+        android:title="Date Preference"
+        android:key="pref_date" />
+    <com.pcchin.dtpreference.DateTimePreference
+        android:title="Date and Time Preference"
+        android:key="pref_date_time"/>
+</PreferenceScreen>
