@@ -69,6 +69,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
 ``` 
 
 The following functions are available for each Dialog:
+
 [TimePreferenceDialog](/dtpreference/src/main/java/com/pcchin/dtpreference/dialog/TimePreferenceDialog.java):
 - `setInitialTime(long time)`: Sets the initial time displayed by the TimePicker.
 
