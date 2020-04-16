@@ -22,10 +22,13 @@ import android.util.AttributeSet;
 
 import androidx.preference.DialogPreference;
 
+import java.util.Calendar;
+
 /** A preference for selecting a specific time.
  * The date that the time is picked is always the current day.
  * This is made based on a tutorial from https://medium.com/@JakobUlbrich **/
 public class TimePreference extends DialogPreference {
+    private boolean currentTimeSet = false;
     private long currentTime;
 
     public TimePreference(Context context) {
@@ -46,13 +49,18 @@ public class TimePreference extends DialogPreference {
 
     /** Gets the current time that is selected. **/
     public long getTime() {
-        return currentTime;
+        if (currentTimeSet) {
+            return currentTime;
+        } else {
+            return Calendar.getInstance().getTimeInMillis();
+        }
     }
 
     /** Sets the time that is selected. **/
     public void setTime(long time) {
         currentTime = time;
         persistLong(time);
+        currentTimeSet = true;
     }
 
     /** Sets the default value of the TimePicker from the XML. **/
