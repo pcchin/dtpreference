@@ -29,7 +29,8 @@ For the layout XML, simply include the preference without any additional changes
 />
 ```
 
-For your preference fragment, you would to need to override the `onDisplayPreferenceDialog` function as shown below:
+For your preference fragment, you would to need to override the `onDisplayPreferenceDialog` function as shown below 
+in order to display their respective dialogs:
 ```Java
 public class PreferenceFragment extends PreferenceFragmentCompat {
     @Override
@@ -47,8 +48,12 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
             dialogFragment = TimePreferenceDialog.newInstance(preference.getKey());
         } else if (preference instanceof DatePreference) {
             dialogFragment = DatePreferenceDialog.newInstance(preference.getKey());
+            // Alternatively, you can specify the minimum date and maximum date as well
+            dialogFragment = DatePreferenceDialog.newInstance(preference.getKey(), minDate, maxDate);
         } else if (preference instanceof DateTimePreference) {
             dialogFragment = DateTimePreferenceDialog.newInstance(preference.getKey());
+            // You can also specify the minimum and maximum date here
+            dialogFragment = DateTimePreferenceDialog.newInstance(preference.getKey(), minDate, maxDate);
         }
 
         if (dialogFragment != null) {
@@ -64,6 +69,8 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
 ``` 
 
 ## Example Implementation
+[![TimePreference](/TimePreference.png)]
+[![DatePreference](/DatePreference.png)]
 
 ## Contribution
 Any contribution is welcome, feel free to add any issues or pull requests to the repository.

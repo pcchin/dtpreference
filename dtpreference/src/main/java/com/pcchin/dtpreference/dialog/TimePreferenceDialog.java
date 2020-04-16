@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 PC Chin.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.pcchin.dtpreference.dialog;
 
 import android.os.Build;
@@ -14,13 +30,14 @@ import com.pcchin.dtpreference.TimePreference;
 
 import java.util.Calendar;
 
-/** The Fragment used in TimePreference to display the time. This should not be used outside of
- * @see com.pcchin.dtpreference.TimePreference **/
+/** The Fragment used in
+ * @see TimePreference to display the time. This should not be used outside of TimePreference. **/
 public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
     private TimePicker timePicker;
 
-    public static TimePreferenceDialog newInstance(
-            String key) {
+    /** Creates a new instance of this dialog.
+     * @param key The key of the preference selected. **/
+    public static TimePreferenceDialog newInstance(String key) {
         final TimePreferenceDialog
                 fragment = new TimePreferenceDialog();
         final Bundle bundle = new Bundle(1);
@@ -30,6 +47,7 @@ public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
         return fragment;
     }
 
+    /** Initializes the view and sets up the TimePicker. **/
     @Override
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
@@ -59,6 +77,7 @@ public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
         }
     }
 
+    /** Saves the value as a long SharedPreference. **/
     @Override
     public void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {

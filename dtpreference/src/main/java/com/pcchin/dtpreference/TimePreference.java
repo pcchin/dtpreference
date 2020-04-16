@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 PC Chin.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.pcchin.dtpreference;
 
 import android.content.Context;
@@ -6,12 +22,10 @@ import android.util.AttributeSet;
 
 import androidx.preference.DialogPreference;
 
-import com.pcchin.dtpreference.dialog.TimePreferenceDialog;
-
-/** A preference for selecting a specific time. This is made based on a tutorial from
- * https://medium.com/@JakobUlbrich **/
+/** A preference for selecting a specific time.
+ * The date that the time is picked is always the current day.
+ * This is made based on a tutorial from https://medium.com/@JakobUlbrich **/
 public class TimePreference extends DialogPreference {
-    private TimePreferenceDialog dialogFragment;
     private long currentTime;
 
     public TimePreference(Context context) {
@@ -30,15 +44,18 @@ public class TimePreference extends DialogPreference {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    /** Gets the current time that is selected. **/
     public long getTime() {
         return currentTime;
     }
 
+    /** Sets the time that is selected. **/
     public void setTime(long time) {
         currentTime = time;
         persistLong(time);
     }
 
+    /** Sets the default value of the TimePicker from the XML. **/
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         // Default value from attribute
@@ -46,6 +63,7 @@ public class TimePreference extends DialogPreference {
         return value == null ? null : Long.parseLong(value);
     }
 
+    /** Sets the initial value of the TimePicker, otherwise defaults to defaultValue. **/
     @Override
     protected void onSetInitialValue(Object defaultValue) {
         // Read the value. Use the default value if it is not possible.
@@ -57,6 +75,7 @@ public class TimePreference extends DialogPreference {
         }
     }
 
+    /** Returns the layout resource of the TimePicker. **/
     @Override
     public int getDialogLayoutResource() {
         return R.layout.com_pcchin_dtpreference_25f3t27tr7jswszj2eeg;
