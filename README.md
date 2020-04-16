@@ -80,7 +80,7 @@ The following functions are available for each Dialog:
 - `setInitialDateTime(long dateTime)`: Sets the initial date and time displayed by both the TimePicker and the DatePicker.
 
 ## Example Implementation
-[![TimePreference](/TimePreference.png)](/TimePreference.png) | [![DatePreference](/DatePreference.png)](/DatePreference.png)
+| [![TimePreference](/TimePreference.png)](/TimePreference.png) | [![DatePreference](/DatePreference.png)](/DatePreference.png) |
 
 ## Contribution
 Any contribution is welcome, feel free to add any issues or pull requests to the repository.
