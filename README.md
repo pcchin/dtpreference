@@ -68,9 +68,19 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
 }
 ``` 
 
+The following functions are available for each Dialog:
+[TimePreferenceDialog](/dtpreference/src/main/java/com/pcchin/dtpreference/dialog/TimePreferenceDialog.java):
+- `setInitialTime(long time)`: Sets the initial time displayed by the TimePicker.
+
+[DatePreferenceDialog](/dtpreference/src/main/java/com/pcchin/dtpreference/dialog/DatePreferenceDialog.java):
+- `setInitialDate(long date)`: Sets the initial date displayed by the DatePicker.
+
+[DateTimePreferenceDialog](/dtpreference/src/main/java/com/pcchin/dtpreference/dialog/DateTimePreferenceDialog.java):
+- `setInitialDateTime(long dateTime)`: Sets the initial date and time displayed by both the TimePicker and the DatePicker.
+
 ## Example Implementation
-[![TimePreference](/TimePreference.png)]
-[![DatePreference](/DatePreference.png)]
+[![TimePreference](/TimePreference.png)](/TimePreference.png)
+[![DatePreference](/DatePreference.png)](/DatePreference.png)
 
 ## Contribution
 Any contribution is welcome, feel free to add any issues or pull requests to the repository.

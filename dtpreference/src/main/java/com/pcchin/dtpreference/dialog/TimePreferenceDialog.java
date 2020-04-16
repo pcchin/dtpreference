@@ -34,6 +34,8 @@ import java.util.Calendar;
  * @see TimePreference to display the time. This should not be used outside of TimePreference. **/
 public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
     private TimePicker timePicker;
+    private boolean timeOverwritten = false;
+    private long iniTime;
 
     /** Creates a new instance of this dialog.
      * @param key The key of the preference selected. **/
@@ -45,6 +47,13 @@ public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
         fragment.setArguments(bundle);
 
         return fragment;
+    }
+
+    /** Sets the initial time shown, which overwrites the value within the SharedPreference. **/
+    public TimePreferenceDialog setInitialTime(long time) {
+        iniTime = time;
+        timeOverwritten = true;
+        return this;
     }
 
     /** Initializes the view and sets up the TimePicker. **/
@@ -59,10 +68,14 @@ public final class TimePreferenceDialog extends PreferenceDialogFragmentCompat {
         }
 
         // Get the time from the related Preference
-        long initialTime = -1;
+        long initialTime;
         DialogPreference preference = getPreference();
-        if (preference instanceof TimePreference) {
+        if (timeOverwritten) {
+            initialTime = iniTime;
+        } else if (preference instanceof TimePreference) {
             initialTime = ((TimePreference) preference).getTime();
+        } else {
+            initialTime = Calendar.getInstance().getTimeInMillis();
         }
 
         // Set the time to the TimePicker

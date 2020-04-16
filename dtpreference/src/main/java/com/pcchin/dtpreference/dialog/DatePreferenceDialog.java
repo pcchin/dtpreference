@@ -31,8 +31,9 @@ import java.util.Calendar;
 /** The Fragment used in
  * @see DatePreference to display the time. This should not be used outside of DatePreference. **/
 public final class DatePreferenceDialog extends PreferenceDialogFragmentCompat {
+    private boolean dateOverwritten = false;
     private DatePicker datePicker;
-    private long minDate = -1, maxDate = -1;
+    private long minDate = -1, maxDate = -1, iniDate;
 
     /** Creates a new instance of this dialog.
      * @param key The key of the preference selected. **/
@@ -59,6 +60,13 @@ public final class DatePreferenceDialog extends PreferenceDialogFragmentCompat {
         return fragment;
     }
 
+    /** Sets the initial date shown, which overwrites the value within the SharedPreference. **/
+    public DatePreferenceDialog setInitialDate(long date) {
+        iniDate = date;
+        dateOverwritten = true;
+        return this;
+    }
+
     /** Initializes the view and sets up the DatePicker. **/
     @Override
     protected void onBindDialogView(View view) {
@@ -70,11 +78,15 @@ public final class DatePreferenceDialog extends PreferenceDialogFragmentCompat {
                     " a DatePicker with id 'edit'");
         }
 
-        // Get the date from the related Preference
-        long initialTime = Calendar.getInstance().getTimeInMillis();
+        // Get the date from the related Preference (If not overwritten)
+        long initialTime;
         DialogPreference preference = getPreference();
-        if (preference instanceof DatePreference) {
+        if (dateOverwritten) {
+            initialTime = iniDate;
+        } else if (preference instanceof DatePreference) {
             initialTime = ((DatePreference) preference).getDate();
+        } else {
+            initialTime = Calendar.getInstance().getTimeInMillis();
         }
 
         // Set the date to the DatePicker

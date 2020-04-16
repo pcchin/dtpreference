@@ -33,6 +33,8 @@ import java.util.Calendar;
 
 public final class DateTimePreferenceDialog extends PreferenceDialogFragmentCompat {
     private boolean dateSelected;
+    private boolean dateOverwritten = false;
+    private long iniDate;
 
     // Variables for selecting date
     private DatePicker datePicker;
@@ -86,15 +88,26 @@ public final class DateTimePreferenceDialog extends PreferenceDialogFragmentComp
         return fragment;
     }
 
+    /** Sets the initial date and time shown, which overwrites the value within the SharedPreference. **/
+    public DateTimePreferenceDialog setInitialDateTime(long dateTime) {
+        iniDate = dateTime;
+        dateOverwritten = true;
+        return this;
+    }
+
     /** Initializes the view and sets up the DatePicker. **/
     @Override
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
         // Get the time from the related Preference
-        long initialTime = Calendar.getInstance().getTimeInMillis();
+        long initialTime;
         DialogPreference preference = getPreference();
-        if (preference instanceof DateTimePreference) {
+        if (dateOverwritten) {
+            initialTime = iniDate;
+        } else if (preference instanceof DateTimePreference) {
             initialTime = ((DateTimePreference) preference).getDateTime();
+        } else {
+            initialTime = Calendar.getInstance().getTimeInMillis();
         }
 
         Calendar calendar = Calendar.getInstance();
