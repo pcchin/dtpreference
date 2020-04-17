@@ -60,6 +60,9 @@ public class DatePreference extends DialogPreference {
         currentDate = date;
         persistLong(date);
         currentDateSet = true;
+        if (getOnPreferenceChangeListener() != null) {
+            getOnPreferenceChangeListener().onPreferenceChange(this, date);
+        }
     }
 
     /** Gets the default value of the DatePicker from the XML. **/

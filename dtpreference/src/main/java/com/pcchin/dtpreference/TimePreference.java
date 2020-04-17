@@ -61,6 +61,9 @@ public class TimePreference extends DialogPreference {
         currentTime = time;
         persistLong(time);
         currentTimeSet = true;
+        if (getOnPreferenceChangeListener() != null) {
+            getOnPreferenceChangeListener().onPreferenceChange(this, time);
+        }
     }
 
     /** Sets the default value of the TimePicker from the XML. **/

@@ -61,6 +61,9 @@ public class DateTimePreference extends DialogPreference {
         currentDateTime = dateTime;
         persistLong(dateTime);
         currentDateTimeSet = true;
+        if (getOnPreferenceChangeListener() != null) {
+            getOnPreferenceChangeListener().onPreferenceChange(this, dateTime);
+        }
     }
 
     /** Sets whether the date has been selected by the Fragment.
