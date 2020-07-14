@@ -16,7 +16,7 @@ which can be easily converted to a `Calendar` object through `Calendar.setTimeIn
 This library is available in JCenter and Maven Central. To install, you would need to include the following into your `project/build.gradle`:
 
 ```
-implementation 'com.pcchin.dtpreference:dtpreference:1.1.1'
+implementation 'com.pcchin.dtpreference:dtpreference:1.1.2'
 ```
 
 ## Usage
