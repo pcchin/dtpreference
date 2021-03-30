@@ -1,5 +1,4 @@
 # dtpreference
-[![Bintray](https://api.bintray.com/packages/pcchin/dtpreference/com.pcchin.dtpreference/images/download.svg)](https://bintray.com/pcchin/dtpreference/com.pcchin.dtpreference/_latestVersion)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.pcchin.dtpreference/dtpreference/badge.svg)](https://search.maven.org/artifact/com.pcchin.dtpreference/dtpreference)
 
 ## Library Info
@@ -13,10 +12,28 @@ All the values for the preference are stored in the form of a `long` variable re
 which can be easily converted to a `Calendar` object through `Calendar.setTimeInMills(long millis)`.
 
 ## Installation
-This library is available in JCenter and Maven Central. To install, you would need to include the following into your `project/build.gradle`:
+This library is available in Maven Central and a backup is available on my personal repository. To install, you would need to include the following into your `project/build.gradle`:
 
 ```
-implementation 'com.pcchin.dtpreference:dtpreference:1.1.2'
+implementation 'com.pcchin.dtpreference:dtpreference:1.1.3'
+```
+
+You may also need to include the following in your `build.gradle`:
+
+```
+buildscript {
+    ...
+}
+
+allprojects {
+    ...
+    repositories {
+        ...
+        // Use this if Maven Central is not working
+        // maven { url "https://nexus.pcchin.com/repository/maven-releases/" }
+        mavenCentral()
+    }
+}
 ```
 
 ## Usage
